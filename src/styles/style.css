@@ -36,6 +36,7 @@
 }
 
 .main{
+  overflow: hidden;
     /* margin-left: 180px;
     margin-right: 180px; */
     margin-top: 10px;
@@ -47,3 +48,34 @@
   border-width: 1.5px;
 }
 
+.suggestion{
+  border: none;
+  background-color: white;
+  cursor:pointer;
+  color: purple;
+  font-size: 20px;
+}
+
+
+.images{
+  padding: 10px;
+  border-radius: 40px;
+  background-color: white;
+  border: 1.4px solid black;
+  cursor:pointer;
+}
+
+.imagepage{
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px;
+  align-items: center;
+  background-color: white;
+  border-radius: 12px;
+}
+
+.imagepage img{
+height: 200px;
+}
