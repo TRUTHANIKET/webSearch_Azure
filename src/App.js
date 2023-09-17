@@ -12,7 +12,7 @@ function App() {
     const res=await fetch(`https://api.bing.microsoft.com/v7.0/search?q=${query}`,{
       method:"GET",
       headers:{
-        'ocp-apim-subscription-key':'942f828a15c64147a2cf636f29f2ff77'
+        'ocp-apim-subscription-key':process.env.REACT_APP_AZURE_SUB_KEY
       }
     })
     const data=await res.json(res)
