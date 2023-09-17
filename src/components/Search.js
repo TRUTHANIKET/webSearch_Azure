@@ -1,5 +1,6 @@
 import React from 'react'
 import '../styles/style.css'
+import '../index.css'
 
 export default function Search({searchresult}) {
   return (
@@ -8,15 +9,15 @@ export default function Search({searchresult}) {
           return (
            <>
            <div className='main'>
-           <a href={res.url}>
+           <a className='link' href={res.url}>
             <div className='container'>
                 {res.thumbnailUrl && <img src={res.thumbnailUrl} ></img>}
             
             <h2 className="list-group-item" key={res.id} >
               {res.name}
             </h2>
-            <a href={res.displayUrl}>{res.displayUrl}</a>
             <p>{res.snippet}</p>
+            <a className='url' href={res.displayUrl}>Check Website</a>
             </div></a></div>
             </>
           );
