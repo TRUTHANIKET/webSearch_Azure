@@ -70,7 +70,7 @@ setSuggestion(suggestiondata.flaggedTokens[0].suggestions[0].suggestion)
         console.log(resultimage.value)
         setimageLoaded(false)
         setSearchResult('')
-
+        setIsVideoLoaded(true)
       }
 
 const triggerVideos=async(e)=>{
@@ -88,6 +88,7 @@ const triggerVideos=async(e)=>{
   setvideodata(videodata.value)
   setSearchResult('')
   setIsVideoLoaded(false)
+  setimageLoaded(true)
 }
 
   return (
