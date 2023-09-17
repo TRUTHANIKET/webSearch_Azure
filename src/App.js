@@ -2,6 +2,7 @@ import { useState } from "react";
 import Search from "./components/Search";
 import Image from "./components/Image";
 import './index.css'
+import Video from "./components/Video";
 
 function App() {
   const [query,setQuery]=useState('')
@@ -11,7 +12,8 @@ function App() {
   const [suggestion,setSuggestion]=useState('')
   const [imagedata,setImagedata]=useState([])
   const [isimageloaded,setimageLoaded]=useState(true)
-
+  const [isvideoLoaded,setIsVideoLoaded]=useState(true)
+  const [videodata,setvideodata]=useState([])
 
  
   const searchTrigger=async(e)=>{
@@ -50,6 +52,7 @@ setSuggestion(suggestiondata.flaggedTokens[0].suggestions[0].suggestion)
     e.preventDefault();
     setQuery(suggestion)
     setimageLoaded(true)
+    setIsVideoLoaded(true)
     
   
       }
@@ -70,6 +73,23 @@ setSuggestion(suggestiondata.flaggedTokens[0].suggestions[0].suggestion)
 
       }
 
+const triggerVideos=async(e)=>{
+  e.preventDefault();
+
+  const fetchvideo=await fetch(`https://api.bing.microsoft.com/v7.0/videos/search?q=${query}`,{
+    method:"GET",
+      headers:{
+        'ocp-apim-subscription-key':"942f828a15c64147a2cf636f29f2ff77"
+      }
+  })
+
+  const videodata=await fetchvideo.json(fetchvideo)
+  console.log(videodata.value)
+  setvideodata(videodata.value)
+  setSearchResult('')
+  setIsVideoLoaded(false)
+}
+
   return (
   
    <>
@@ -85,9 +105,11 @@ setSuggestion(suggestiondata.flaggedTokens[0].suggestions[0].suggestion)
    </form>
    {suggestion && <p>Did you mean <button className="suggestion" onClick={changeval}>{suggestion}</button>?</p>}
    {isLoaded && isimageloaded && <button className="images" onClick={triggerImage}>Images</button>}
+   {isLoaded && isvideoLoaded && <button className="images" onClick={triggerVideos}>Videos</button>}
    {!isLoaded && <><p>Nothing's here you may search something ... </p>  <img src="https://i2.wp.com/recommendmeanime.com/wp-content/uploads/2018/10/doubt-manga.jpg?resize=616%2C473&ssl=1" height="220px"></img></>}
    
  {searchresult && <Search searchresult={searchresult}/>}
+ {videodata && <Video videodata={videodata}/>}
  {imagedata && <Image imagedata={imagedata}/>}
  <br></br>
  <br></br>
